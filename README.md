@@ -14,13 +14,14 @@ IME Locker is for Windows users who rely on shortcut-heavy workflows — remote 
 
 In these situations, a single Shift press (or other IME toggle key) can accidentally switch the input method mid-task — breaking sync in a remote session, or hijacking a keyboard shortcut meant for the app.
 
-IME Locker lets you lock your current input method with one click. While locked, Shift / Ctrl+Space / Win+Space / Alt+Shift are blocked from switching it, so nothing changes until you manually unlock it.
+IME Locker lets you lock your current input method with one click. While locked, Shift / Ctrl+Space / Win+Space / Alt+Shift are blocked from switching it. You can still switch with the mouse (the input indicator on the taskbar), and whatever you pick becomes the new locked input method.
 
 ### Features
 
 - Small window showing your current input method and lock status
 - One click to lock the input method you're currently on (no need to pre-select one)
-- Blocks Shift, Ctrl+Space, Win+Space, and Alt+Shift while locked
+- Blocks Shift, Ctrl+Space, Win+Space, and Alt+Shift while locked; if a key slips through, the input method is switched back within a second
+- Mouse switching from the taskbar still works and updates the lock
 - Manual unlock only — no timers, no auto-expiry
 - Lightweight, keyboard-hook based — negligible CPU/memory footprint while idle
 
@@ -39,6 +40,11 @@ Download the latest `.exe` from the [Releases](../../releases) page — no need 
 1. Install [AutoHotkey v2](https://www.autohotkey.com/)
 2. Open `IMELocker.ahk` to run it directly, or use the bundled **Ahk2Exe** tool to compile it into a standalone `.exe`
 
+### Known limitations
+
+- In Illustrator, Ctrl+Space is the Zoom tool and is blocked while locked. To keep it, remove `"$^Space"` from `BLOCKED_HOTKEYS` at the top of the script.
+- To block keys in windows running as administrator, IME Locker must also run as administrator.
+
 ### License
 
 MIT
@@ -53,13 +59,14 @@ IME Locker 是給需要大量使用快捷鍵的 Windows 使用者的小工具 �
 
 在這些情境下,按一下 Shift(或其他輸入法切換鍵)就可能不小心把輸入法切掉,導致遠端桌面兩邊狀態不同步,或是軟體裡的快捷鍵被輸入法劫持。
 
-IME Locker 讓你一鍵鎖定目前的輸入法。鎖定期間,Shift、Ctrl+Space、Win+Space、Alt+Shift 都不會把輸入法切走,直到你手動解除鎖定為止。
+IME Locker 讓你一鍵鎖定目前的輸入法。鎖定期間,Shift、Ctrl+Space、Win+Space、Alt+Shift 都不會把輸入法切走。用滑鼠點工作列的輸入法圖示仍然可以切換,切換後的輸入法會成為新的鎖定狀態。
 
 ### 功能
 
 - 小視窗即時顯示目前輸入法與鎖定狀態
 - 一鍵鎖定「目前正在使用」的輸入法,不用事先指定
-- 鎖定期間攔截 Shift、Ctrl+Space、Win+Space、Alt+Shift
+- 鎖定期間攔截 Shift、Ctrl+Space、Win+Space、Alt+Shift;萬一有按鍵沒擋住,1 秒內自動切回
+- 用滑鼠從工作列切換仍然可用,並會更新鎖定狀態
 - 僅支援手動解除鎖定,沒有計時器自動解鎖
 - 以鍵盤 hook 為核心,待機時幾乎不耗 CPU / 記憶體
 
@@ -77,6 +84,11 @@ IME Locker 讓你一鍵鎖定目前的輸入法。鎖定期間,Shift、Ctrl+Spac
 
 1. 安裝 [AutoHotkey v2](https://www.autohotkey.com/)
 2. 直接開啟 `IMELocker.ahk` 執行,或用內附的 **Ahk2Exe** 工具編譯成獨立 `.exe`
+
+### 已知限制
+
+- Illustrator 的 Ctrl+Space 是放大鏡工具,鎖定期間會被擋掉。如果要保留,把腳本開頭 `BLOCKED_HOTKEYS` 裡的 `"$^Space"` 刪掉。
+- 以系統管理員身分執行的視窗,IME Locker 也要用系統管理員身分執行才擋得到按鍵。
 
 ### 授權
 
